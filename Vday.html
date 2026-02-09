@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valentine for Jams 💘</title>
+
+  <style>
+    :root { --pink:#ff3b7a; --bg:#fff7fb; --text:#111; --muted:#555; }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(circle at top, var(--bg), #ffffff 55%);
+      color: var(--text);
+    }
+
+    .wrap {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 560px;
+      border: 1px solid #eee;
+      border-radius: 22px;
+      background: rgba(255,255,255,.95);
+      box-shadow: 0 16px 40px rgba(0,0,0,.08);
+      padding: 26px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #ffe1ec;
+      color: #b8003b;
+      font-weight: 650;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 8px 0 12px;
+      font-size: 30px;
+      letter-spacing: -0.4px;
+    }
+
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    a {
+      color: var(--pink);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 20px;
+      border-radius: 16px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform .12s ease;
+      user-select: none;
+    }
+
+    button:active { transform: scale(0.97); }
+
+    #yes {
+      background: var(--pink);
+      color: white;
+    }
+
+    #no {
+      background: #f2f2f2;
+      color: #111;
+      position: relative;
+    }
+
+    #msg {
+      margin-top: 18px;
+      font-weight: 750;
+      font-size: 18px;
+      color: #111;
+    }
+
+    .hearts {
+      position: absolute;
+      inset: -40px;
+      opacity: 0.15;
+      background:
+        radial-gradient(circle at 20% 25%, #ff3b7a 0 12px, transparent 13px),
+        radial-gradient(circle at 65% 35%, #ff3b7a 0 10px, transparent 11px),
+        radial-gradient(circle at 35% 70%, #ff3b7a 0 9px, transparent 10px),
+        radial-gradient(circle at 80% 75%, #ff3b7a 0 11px, transparent 12px);
+      pointer-events: none;
+      transform: rotate(-6deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="hearts"></div>
+
+      <div class="badge">for Jams only 💌</div>
+
+      <h1>Jams… will you be my Valentine? 💘</h1>
+
+      <p>
+        I couldn’t just text this like a normal person…<br>
+        so I made a whole website instead 😭
+      </p>
+
+      <p>
+        🎶 Play this while you read:<br>
+        <a href="https://www.youtube.com/watch?v=VI0NDsh2b8k"
+           target="_blank"
+           rel="noopener">
+          Our Song 💖
+        </a>
+      </p>
+
+      <div class="btns">
+        <button id="yes">Yes 💖</button>
+        <button id="no">No 🙃</button>
+      </div>
+
+      <div id="msg"></div>
+    </div>
+  </div>
+
+  <script>
+    const no = document.getElementById("no");
+    const yes = document.getElementById("yes");
+    const msg = document.getElementById("msg");
+
+    // No button dodges
+    let dodges = 0;
+    no.addEventListener("mouseenter", () => {
+      dodges++;
+      const x = Math.random() * 240 - 120;
+      const y = Math.random() * 160 - 80;
+      no.style.transform = `translate(${x}px, ${y}px)`;
+
+      if (dodges >= 3) no.textContent = "Jams please 😭";
+      if (dodges >= 5) no.textContent = "You can’t say no";
+    });
+
+    // Yes button celebration
+    yes.addEventListener("click", () => {
+      msg.textContent =
+        "YESSS 🥳💖 See you on the 14th at Heritage Tavern.";
+
+      confetti();
+    });
+
+    function confetti() {
+      for (let i = 0; i < 90; i++) {
+        const s = document.createElement("span");
+        s.textContent = ["💖","💘","💕","✨"][Math.floor(Math.random()*4)];
+        s.style.position = "fixed";
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.top = "-24px";
+        s.style.fontSize = (12 + Math.random() * 18) + "px";
+        s.style.transition = "transform 1.2s linear, opacity 1.2s linear";
+        document.body.appendChild(s);
+
+        requestAnimationFrame(() => {
+          s.style.transform =
+            `translateY(${110 + Math.random()*120}vh) rotate(${Math.random()*360}deg)`;
+          s.style.opacity = "0";
+        });
+
+        setTimeout(() => s.remove(), 1300);
+      }
+    }
+  </script>
+</body>
+</html>
