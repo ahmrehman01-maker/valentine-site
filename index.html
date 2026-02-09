@@ -131,8 +131,7 @@
       <h1>Jams… will you be my Valentine? 💘</h1>
 
       <p>
-        I couldn’t just text this like a normal person…<br>
-        so I made a whole website instead 😭
+        I have one question for you 💌
       </p>
 
       <p>
@@ -170,10 +169,16 @@
       if (dodges >= 5) no.textContent = "You can’t say no";
     });
 
-    // Yes button celebration
+    // Yes button celebration + reservation + maps link
     yes.addEventListener("click", () => {
-      msg.textContent =
-        "YESSS 🥳💖 See you on the 14th at Heritage Tavern.";
+      msg.innerHTML =
+        `YESSS 🥳💖 See you on the 14th at Heritage Tavern.<br><br>
+         🕜 Reservation is at <strong>1:30 PM</strong>.<br><br>
+         📍 <a href="https://www.google.com/maps/search/?api=1&query=Heritage+Tavern+Madison+WI"
+         target="_blank"
+         style="color:#ff3b7a; font-weight:700; text-decoration:none;">
+         Open in Google Maps →
+         </a>`;
 
       confetti();
     });
